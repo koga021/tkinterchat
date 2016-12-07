@@ -1,3 +1,8 @@
+import requests
+import json
+from datetime import datetime
+import hashlib
+import time
 from tkinter import *
 
 #from funcoes.botao import *
@@ -7,33 +12,55 @@ from tkinter import *
 print ("Ola mundo")
 version="2016-12-07"
 
-def bt_click():
+def bt_logar():
     print("Foi clicando o botao")
     lb["text"]="Autenticando"
+    print ("Abaixo valor de login")
+    print(login.get())
+    GetLogin=login.get()
+    GetSenha=senha.get()
+    print ("Abaixo valor de senha")
+    print(senha.get())
+    try:
+        doc_data={}
+        query=json.dumps(doc_data)
+        url="http://10.130.75.196:9200/tkinterchat/email/"
+        url_completa=url+GetLogin
+        resposta=requests.post(url_completa,data=query)
+    #print(response)
+    #print "criando documentos com a data de: "+data_time
+    except:
+        print(resposta)
+        lb["text"]="Erro na Conexao"
+
 
 
 janela= Tk()
+janela.title("Tkinter Chat Versão"+version)
+janela["bg"]="grey"
+janela["bg"]="grey"
+#Largura x Altura + espaço esquerdo + espaço topo
+janela.geometry("260x500")
 
-login=Entry(janela)
-login.place(x=75,y=100)
-senha=Entry(janela)
-senha.place(x=75,y=120)
+
+login=Entry(janela,width=40)
+login.place(x=10,y=100)
+senha=Entry(janela,width=40)
+senha.place(x=10,y=120)
 
 
 lb=Label(janela, text="Aguardando autenticação ...")
-bt=Button(janela, width=10, text="OK",command=bt_click)
+lb.pack()
+
+bt=Button(janela, width=10, text="OK",command=bt_logar)
 bt.place(x=100 , y=150)
 
 #lb=Label(janela,text="Teste")
 #lb.place(x=10, y=10)
 
-janela.title("Tkinter Chat Versão"+version)
-janela["bg"]="grey"
-janela["bg"]="grey"
-#Largura x Altura + espaço esquerdo + espaço topo
-janela.geometry("250x500")
 
 
-lb.pack()
+
+
 
 janela.mainloop()
