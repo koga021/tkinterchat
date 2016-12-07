@@ -13,25 +13,30 @@ print ("Ola mundo")
 version="2016-12-07"
 
 def bt_logar():
-    print("Foi clicando o botao")
-    lb["text"]="Autenticando"
-    print ("Abaixo valor de login")
-    print(login.get())
+    #print(login.get())
     GetLogin=login.get()
     GetSenha=senha.get()
-    print ("Abaixo valor de senha")
-    print(senha.get())
-    try:
-        doc_data={}
-        query=json.dumps(doc_data)
-        url="http://10.130.75.196:9200/tkinterchat/email/"
-        url_completa=url+GetLogin
-        resposta=requests.post(url_completa,data=query)
-    #print(response)
-    #print "criando documentos com a data de: "+data_time
-    except:
-        print(resposta)
-        lb["text"]="Erro na Conexao"
+    #print ("Abaixo valor de senha")
+    #print(senha.get())
+    if (len(GetLogin) > 0 and len(GetSenha) > 0 and GetLogin.count('@')==1):
+        print("Foi clicando o botao")
+        lb["text"]="Autenticando"
+        print ("Abaixo valor de login")
+    
+        try:
+            doc_data={}
+            query=json.dumps(doc_data)
+            url="http://10.130.75.196:9200/tkinterchat/email/"
+            url_completa=url+GetLogin
+            resposta=requests.post(url_completa,data=query)
+            #print(response)
+            #print "criando documentos com a data de: "+data_time
+        except:
+            #print(resposta)
+            lb["text"]="Erro na Conexao"
+    else:
+        print("Login ou senha invalidos")
+        lb["text"]="Login e/ou senha invalidas"
 
 
 
