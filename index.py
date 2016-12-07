@@ -14,11 +14,15 @@ def bt_click():
 
 janela= Tk()
 
+login=Entry(janela)
+login.place(x=75,y=100)
+senha=Entry(janela)
+senha.place(x=75,y=120)
 
 
 lb=Label(janela, text="Aguardando autenticação ...")
-bt=Button(janela, width=20, text="OK",command=bt_click)
-bt.place(x=10 , y=100)
+bt=Button(janela, width=10, text="OK",command=bt_click)
+bt.place(x=100 , y=150)
 
 #lb=Label(janela,text="Teste")
 #lb.place(x=10, y=10)
