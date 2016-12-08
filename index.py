@@ -38,6 +38,7 @@ def bt_logar():
     else:
         print("Login ou senha invalidos")
         lb["text"]="Login e/ou senha invalidas"
+        
 def bt_cadastro():
     janelacadastro= Tk()
     janelacadastro.title("Novo cadastro")
