@@ -4,6 +4,7 @@ from datetime import datetime
 import hashlib
 import time
 from tkinter import *
+from celery import Celery
 
 #from funcoes.botao import *
 
@@ -37,8 +38,28 @@ def bt_logar():
     else:
         print("Login ou senha invalidos")
         lb["text"]="Login e/ou senha invalidas"
+def bt_cadastro():
+    janelacadastro= Tk()
+    janelacadastro.title("Novo cadastro")
+    janelacadastro["bg"]="grey"
+    janelacadastro["bg"]="grey"
+    #Largura x Altura + espaço esquerdo + espaço topo
+    janelacadastro.geometry("300x200")
 
+    lb_nome=Label(janelacadastro, text="Nome completo")
+    nomecompleto=Entry(janelacadastro,width=50)
+    nomecompleto.place(x=10,y=100)
+    lb_nome.pack()
 
+    lb_email=Label(janelacadastro, text="email")
+    lb_email.pack()
+    emailcadastro=Entry(janelacadastro,width=50)
+    emailcadastro.place(x=10,y=130)
+
+    lb_senha=Label(janelacadastro, text="senha")
+    lb_senha.pack()
+    senhacadastro=Entry(janelacadastro,width=50,show="*")
+    senhacadastro.place(x=10,y=160)
 
 janela= Tk()
 janela.title("Tkinter Chat Versão"+version)
@@ -59,6 +80,9 @@ lb.pack()
 
 bt=Button(janela, width=10, text="OK",command=bt_logar)
 bt.place(x=100 , y=150)
+
+bt_cadastro=Button(janela, width=20, text="Cadastre-se",command=bt_cadastro)
+bt_cadastro.place(x=60 , y=300)
 
 #lb=Label(janela,text="Teste")
 #lb.place(x=10, y=10)
